@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karim Nakhle - Nexus Executive</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+            background: linear-gradient(180deg, #f0f4f8 0%, #e8eef6 50%, #f2f5fa 100%);
+            color: #2c3e50;
+            line-height: 1.8;
+            position: relative;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(230, 240, 255, 0.4) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(245, 235, 255, 0.3) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        header {
+            position: relative;
+            z-index: 20;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(200, 220, 255, 0.3);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            -webkit-backdrop-filter: blur(20px);
+        }
+        
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 300;
+            letter-spacing: 4px;
+            color: #1a3a52;
+            text-transform: uppercase;
+        }
+        
+        .nav {
+            display: flex;
+            gap: 3rem;
+            font-size: 0.9rem;
+            letter-spacing: 1.5px;
+        }
+        
+        .nav a {
+            color: #4a5f7f;
+            text-decoration: none;
+            cursor: pointer;
+            position: relative;
+            transition: color 0.4s ease;
+            font-weight: 500;
+        }
+        
+        .nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #5b9bd5, #70ad47);
+            transition: width 0.4s ease;
+        }
+        
+        .nav a:hover {
+            color: #2c5aa0;
+        }
+        
+        .nav a:hover::after {
+            width: 100%;
+        }
+        
+        .container {
+            position: relative;
+            z-index: 10;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .hero {
+            padding: 8rem 2rem 6rem;
+            text-align: center;
+        }
+        
+        .hero-tag {
+            display: inline-block;
+            padding: 0.6rem 1.4rem;
+            background: linear-gradient(135deg, rgba(91, 155, 213, 0.1) 0%, rgba(112, 173, 71, 0.1) 100%);
+            border: 1px solid rgba(91, 155, 213, 0.3);
+            border-radius: 50px;
+            color: #2c5aa0;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+        
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            color: #1a3a52;
+            font-weight: 200;
+            letter-spacing: 2px;
+            line-height: 1.2;
+        }
+        
+        .hero-highlight {
+            background: linear-gradient(135deg, #5b9bd5 0%, #70ad47 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: #5b7a99;
+            margin-bottom: 2.5rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+        
+        .hero p {
+            font-size: 1.05rem;
+            max-width: 750px;
+            margin: 2.5rem auto;
+            color: #556b82;
+            line-height: 1.9;
+            font-weight: 300;
+        }
+        
+        .cta-btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            margin-top: 2rem;
+            border: 2px solid #5b9bd5;
+            background: linear-gradient(135deg, rgba(91, 155, 213, 0.08) 0%, rgba(112, 173, 71, 0.08) 100%);
+            color: #2c5aa0;
+            text-decoration: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+            transition: all 0.4s ease;
+            text-transform: uppercase;
+            border-radius: 8px;
+        }
+        
+        .cta-btn:hover {
+            background: linear-gradient(135deg, rgba(91, 155, 213, 0.15) 0%, rgba(112, 173, 71, 0.15) 100%);
+            border-color: #2c5aa0;
+            box-shadow: 0 12px 30px rgba(91, 155, 213, 0.15);
+            transform: translateY(-2px);
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2rem;
+            margin: 5rem 0 6rem;
+        }
+        
+        .stat-card {
+            padding: 3rem 2rem;
+            border: 1px solid rgba(200, 220, 255, 0.4);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.6) 0%, rgba(240, 248, 255, 0.4) 100%);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: 12px;
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(91, 155, 213, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+        
+        .stat-card:hover::before {
+            left: 100%;
+        }
+        
+        .stat-card:hover {
+            border-color: rgba(91, 155, 213, 0.6);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(240, 248, 255, 0.6) 100%);
+            box-shadow: 0 20px 40px rgba(91, 155, 213, 0.1);
+            transform: translateY(-8px);
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            color: #5b9bd5;
+            font-weight: 200;
+            margin-bottom: 0.8rem;
+            letter-spacing: 1px;
+        }
+        
+        .stat-label {
+            color: #4a5f7f;
+            font-size: 0.9rem;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .portfolio-section {
+            padding: 6rem 0;
+            position: relative;
+        }
+        
+        .portfolio-section:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 10%;
+            right: 10%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(91, 155, 213, 0.2), transparent);
+        }
+        
+        .section-title {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            color: #1a3a52;
+            font-weight: 200;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            color: #5b7a99;
+            font-size: 1rem;
+            margin-bottom: 4rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+        
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+        
+        .portfolio-item {
+            padding: 2.5rem;
+            border: 1px solid rgba(200, 220, 255, 0.3);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.5) 0%, rgba(245, 250, 255, 0.3) 100%);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+        }
+        
+        .portfolio-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(91, 155, 213, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .portfolio-item:hover::before {
+            opacity: 1;
+        }
+        
+        .portfolio-item:hover {
+            border-color: rgba(91, 155, 213, 0.5);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.7) 0%, rgba(240, 248, 255, 0.5) 100%);
+            box-shadow: 0 25px 50px rgba(91, 155, 213, 0.12);
+            transform: translateY(-10px);
+        }
+        
+        .portfolio-number {
+            font-size: 0.9rem;
+            color: #5b9bd5;
+            font-weight: 600;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+        }
+        
+        .portfolio-title {
+            font-size: 1.5rem;
+            color: #1a3a52;
+            margin-bottom: 1rem;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+        
+        .portfolio-desc {
+            color: #556b82;
+            font-size: 0.95rem;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+        
+        .values {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin: 4rem 0;
+        }
+        
+        .value-box {
+            padding: 3rem;
+            border: 1px solid rgba(200, 220, 255, 0.3);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.5) 0%, rgba(245, 250, 255, 0.3) 100%);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 12px;
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .value-box::before {
+            content: '';
+            position: absolute;
+            top: -100%;
+            left: 0;
+            width: 100%;
+            height: 200%;
+            background: linear-gradient(180deg, transparent, rgba(112, 173, 71, 0.05), transparent);
+            transition: top 0.6s ease;
+        }
+        
+        .value-box:hover::before {
+            top: 0;
+        }
+        
+        .value-box:hover {
+            border-color: rgba(112, 173, 71, 0.4);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.7) 0%, rgba(245, 255, 245, 0.4) 100%);
+            box-shadow: 0 20px 40px rgba(112, 173, 71, 0.1);
+            transform: translateY(-8px);
+        }
+        
+        .value-icon {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #5b9bd5 0%, #70ad47 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1.5rem;
+        }
+        
+        .value-title {
+            font-size: 1.3rem;
+            color: #1a3a52;
+            margin-bottom: 1rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+        
+        .value-text {
+            color: #556b82;
+            font-size: 0.95rem;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+        
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+        
+        .expertise-item {
+            padding: 2rem;
+            border: 1px solid rgba(200, 220, 255, 0.25);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(248, 252, 255, 0.2) 100%);
+            border-radius: 8px;
+            transition: all 0.4s ease;
+        }
+        
+        .expertise-item:hover {
+            border-color: rgba(91, 155, 213, 0.4);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.6) 0%, rgba(245, 250, 255, 0.4) 100%);
+            box-shadow: 0 12px 25px rgba(91, 155, 213, 0.08);
+            transform: translateY(-4px);
+        }
+        
+        .expertise-label {
+            color: #5b9bd5;
+            font-size: 0.85rem;
+            letter-spacing: 1.5px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 0.8rem;
+        }
+        
+        .expertise-text {
+            color: #556b82;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+        
+        footer {
+            padding: 4rem 2rem 3rem;
+            text-align: center;
+            color: #556b82;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.3) 0%, rgba(240, 248, 255, 0.2) 100%);
+            border-top: 1px solid rgba(200, 220, 255, 0.2);
+            position: relative;
+            z-index: 10;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: #2c5aa0;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .footer-links a:hover {
+            color: #5b9bd5;
+        }
+        
+        .social {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .social a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border: 1.5px solid rgba(91, 155, 213, 0.4);
+            border-radius: 8px;
+            color: #2c5aa0;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        
+        .social a:hover {
+            border-color: #5b9bd5;
+            background: linear-gradient(135deg, rgba(91, 155, 213, 0.1) 0%, rgba(112, 173, 71, 0.1) 100%);
+            color: #5b9bd5;
+        }
+        
+        .footer-text {
+            color: #7a8fa3;
+            font-size: 0.85rem;
+            margin-top: 2rem;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+        
+        @media (max-width: 768px) {
+            .nav {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .portfolio-grid, .values, .expertise-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Karim Nakhle</div>
+        <nav class="nav">
+            <a onclick="sendPrompt('Tell me about Karim Nakhle\'s vision and philosophy')">Vision</a>
+            <a onclick="sendPrompt('What are the core divisions of Inventure Group')">Portfolio</a>
+            <a onclick="sendPrompt('Share Karim\'s achievements and recognition')">Legacy</a>
+            <a onclick="sendPrompt('How to connect with Karim Nakhle')">Contact</a>
+        </nav>
+    </header>
+    
+    <div class="container">
+        <section class="hero">
+            <div class="hero-tag">Executive Leadership</div>
+            <h1>Building <span class="hero-highlight">Tomorrow's</span> Markets Today</h1>
+            <div class="hero-subtitle">Chairman & Visionary Architect</div>
+            <p>Serial entrepreneur and strategic investor reshaping business ecosystems across the Middle East, North Africa, and beyond. Over five decades of transforming challenges into opportunities through innovation, integrity, and excellence.</p>
+            <button class="cta-btn">Explore Our Vision</button>
+        </section>
+        
+        <section class="stats">
+            <div class="stat-card">
+                <div class="stat-number">54+</div>
+                <div class="stat-label">Years Building Value</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">$1B+</div>
+                <div class="stat-label">Under Active Management</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">25+</div>
+                <div class="stat-label">Years International Experience</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">66</div>
+                <div class="stat-label">Excellence & Innovation Awards</div>
+            </div>
+        </section>
+        
+        <section class="portfolio-section">
+            <h2 class="section-title">Core Ventures</h2>
+            <p class="section-subtitle">Diverse portfolio spanning media, healthcare, real estate, and strategic investments</p>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <div class="portfolio-number">Inventure Group</div>
+                    <div class="portfolio-title">Private Equity & Investment</div>
+                    <div class="portfolio-desc">A multifaceted conglomerate establishing strategic partnerships across Egypt, UAE, Saudi Arabia, Morocco, Turkey, Poland, and CIS regions. Managing a portfolio spanning healthcare, manufacturing, tourism, energy, and infrastructure sectors.</div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-number">Inventure Media Group</div>
+                    <div class="portfolio-title">Digital Media Conglomerate</div>
+                    <div class="portfolio-desc">One of the largest media and digital media conglomerates in the MENAT region. Pioneering innovation in broadcasting, digital transformation, and strategic communications across markets.</div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-number">M&C Saatchi / Publirizk</div>
+                    <div class="portfolio-title">Advertising Excellence</div>
+                    <div class="portfolio-desc">Over 30 years of award-winning advertising and marketing leadership. Creating memorable campaigns and strategic communications that drive business transformation across North Africa and the Middle East.</div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-number">Inventure Medical</div>
+                    <div class="portfolio-title">Healthcare Innovation</div>
+                    <div class="portfolio-desc">Strategic investments in medical technology and healthcare advancement. Advancing medical innovation and accessible healthcare solutions across the MENAT region.</div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-number">Elite Fashion Group</div>
+                    <div class="portfolio-title">Luxury Retail</div>
+                    <div class="portfolio-desc">Premium fashion and retail operations. Expanding luxury retail presence with sophisticated brand positioning and market expansion strategies.</div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-number">My Aqar / GoInvest</div>
+                    <div class="portfolio-title">Real Estate & Capital</div>
+                    <div class="portfolio-desc">Comprehensive real estate development and investment platforms. Connecting investors with premium property opportunities and sustainable development projects.</div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="portfolio-section">
+            <h2 class="section-title">Philosophy & Values</h2>
+            <p class="section-subtitle">The foundation of sustainable growth and market leadership</p>
+            <div class="values">
+                <div class="value-box">
+                    <div class="value-icon">→</div>
+                    <div class="value-title">Strategic Vision</div>
+                    <div class="value-text">Challenges are our compass. We excel at connecting disparate opportunities into cohesive market strategies, transforming raw potential into proven success stories.</div>
+                </div>
+                <div class="value-box">
+                    <div class="value-icon">◇</div>
+                    <div class="value-title">Integrity First</div>
+                    <div class="value-text">Personal values are embedded in every long-term commitment. We build enduring partnerships through transparent leadership, principled decision-making, and consistent excellence.</div>
+                </div>
+                <div class="value-box">
+                    <div class="value-icon">▲</div>
+                    <div class="value-title">Innovation Excellence</div>
+                    <div class="value-text">We never settle for conventional solutions. Our relentless pursuit of perfection drives us to pioneer new approaches and set industry standards across all sectors.</div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="portfolio-section">
+            <h2 class="section-title">Sector Expertise</h2>
+            <p class="section-subtitle">Deep knowledge and proven track records across critical industries</p>
+            <div class="expertise-grid">
+                <div class="expertise-item">
+                    <div class="expertise-label">Media & Communications</div>
+                    <div class="expertise-text">Broadcasting, digital platforms, strategic communications, and brand building</div>
+                </div>
+                <div class="expertise-item">
+                    <div class="expertise-label">Healthcare & Life Sciences</div>
+                    <div class="expertise-text">Medical technology, pharmaceutical distribution, and healthcare advancement</div>
+                </div>
+                <div class="expertise-item">
+                    <div class="expertise-label">Financial Services</div>
+                    <div class="expertise-text">Private equity, capital investment, and institutional advisory services</div>
+                </div>
+                <div class="expertise-item">
+                    <div class="expertise-label">Real Estate Development</div>
+                    <div class="expertise-text">Premium property development, investment vehicles, and market expansion</div>
+                </div>
+                <div class="expertise-item">
+                    <div class="expertise-label">Energy & Infrastructure</div>
+                    <div class="expertise-text">Oil & gas, renewable energy, ports, and critical infrastructure projects</div>
+                </div>
+                <div class="expertise-item">
+                    <div class="expertise-label">Retail & Distribution</div>
+                    <div class="expertise-text">Luxury retail, F&B operations, and multinational distribution networks</div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="portfolio-section" style="padding-bottom: 2rem;">
+            <h2 class="section-title">Recognition</h2>
+            <p class="section-subtitle">Awards and accolades for business excellence and market leadership</p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
+                <div style="padding: 2rem; text-align: center; border: 1px solid rgba(200, 220, 255, 0.25); background: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(248, 252, 255, 0.2) 100%); border-radius: 8px;">
+                    <div style="font-size: 2rem; color: #5b9bd5; font-weight: 200; margin-bottom: 0.5rem;">38</div>
+                    <div style="color: #4a5f7f; font-size: 0.85rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;">Business & Finance Awards</div>
+                </div>
+                <div style="padding: 2rem; text-align: center; border: 1px solid rgba(200, 220, 255, 0.25); background: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(248, 252, 255, 0.2) 100%); border-radius: 8px;">
+                    <div style="font-size: 2rem; color: #70ad47; font-weight: 200; margin-bottom: 0.5rem;">28</div>
+                    <div style="color: #4a5f7f; font-size: 0.85rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;">Advertising & Media Awards</div>
+                </div>
+                <div style="padding: 2rem; text-align: center; border: 1px solid rgba(200, 220, 255, 0.25); background: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(248, 252, 255, 0.2) 100%); border-radius: 8px;">
+                    <div style="font-size: 2rem; color: #5b9bd5; font-weight: 200; margin-bottom: 0.5rem;">Global</div>
+                    <div style="color: #4a5f7f; font-size: 0.85rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;">Board & Advisory Positions</div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <div class="footer-links">
+            <a href="#">www.inventure.me</a>
+            <a href="#">www.inventuremediagroup.com</a>
+            <a href="#">www.invmedical.com</a>
+            <a href="#">info@inventure.me</a>
+        </div>
+        <div class="social">
+            <a href="#" title="LinkedIn">in</a>
+            <a href="#" title="Instagram">@</a>
+            <a href="#" title="YouTube">yt</a>
+        </div>
+        <div class="footer-text">© 2026 Karim Nakhle & Inventure Group. Building tomorrow's markets through vision, innovation, and excellence.</div>
+    </footer>
+</body>
+</html>
